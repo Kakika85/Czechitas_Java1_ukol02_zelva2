@@ -21,8 +21,8 @@ public class HlavniProgram {
         int xIcecream = 200;
         int yIcecream = 300;
         icecream(xIcecream, yIcecream, colors);
-        snowman(xIcecream + 300, yIcecream + 6, colors);
-        train(xIcecream + 300 + 200, yIcecream + 6, colors);
+        snowman(xIcecream + 300, yIcecream - 106, colors);
+        train(xIcecream + 300 + 250, yIcecream + 6, colors);
     }
 
     public void icecream(int x, int y, Color[] colors) {
@@ -47,11 +47,29 @@ public class HlavniProgram {
         drawColorCircle(20, 70, colors[2]);
         zofka.setLocation(x - 105, y + 90);
         drawColorCircle(20, 70, colors[2]);
+
+        zofka.turnRight(90);
     }
 
     public void train(int x, int y, Color[] colors) {
-
-
+        // bojler
+        zofka.setLocation(x+325,y+100);
+        drawsColorRectangle(125,250, colors[2]);
+        // kabina
+        zofka.setLocation(x+325+175,y+100);
+        drawsColorRectangle(250,175,colors[1]);
+        // zadní kolo
+        zofka.setLocation(x+325,y+100);
+        drawColorCircle(88,60,colors[0]);
+        // kolečka
+        zofka.setLocation(x+95,y+146);
+        drawColorCircle(40,60,colors[0]);
+        zofka.setLocation(x+210,y+146);
+        drawColorCircle(40,60,colors[0]);
+        // radlice
+        zofka.setLocation(x+75,y+20);
+        zofka.turnLeft(135);
+        drawsColorTriangle(125 * Math.sqrt(2), 125,colors[1]);
 
 
 
