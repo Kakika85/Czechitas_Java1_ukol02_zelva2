@@ -18,6 +18,13 @@ public class HlavniProgram {
         Color blackColor = new Color(0, 0, 0);
         Color greenColor = new Color(0, 255, 0);
 
+        zofka.setLocation(100, 100);
+        zofka.turnLeft(90);
+
+        // zmrzlina
+        drawColorCircle(45, 60, greenColor);
+        zofka.setLocation(142, 66);
+        drawsColorTriangle(90, 150, redColor);
     }
 
     public void drawsColorTriangle(double sideLength, Color penColor) {
