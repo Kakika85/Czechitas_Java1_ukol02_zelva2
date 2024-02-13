@@ -18,13 +18,32 @@ public class HlavniProgram {
         Color blackColor = new Color(0, 0, 0);
         Color greenColor = new Color(0, 255, 0);
 
-        zofka.setLocation(100, 100);
+        int xIcecream = 200;
+        int yIcecream = 300;
+        zofka.setLocation(xIcecream, yIcecream);
         zofka.turnLeft(90);
 
         // zmrzlina
-        drawColorCircle(45, 60, greenColor);
-        zofka.setLocation(142, 66);
-        drawsColorTriangle(90, 150, redColor);
+        drawColorCircle(90, 60, greenColor);
+        zofka.setLocation(xIcecream +85, yIcecream-70 );
+        drawsColorTriangle(180, 300, redColor);
+
+        // sněhulák
+        int xSnowman = xIcecream + 300;
+        int ySnowman = xIcecream + 6;
+
+        zofka.setLocation(xSnowman, ySnowman);
+        drawColorCircle(60, 60, blackColor);
+        zofka.setLocation(xSnowman, ySnowman + 160);
+        drawColorCircle(80, 80, blackColor);
+        zofka.setLocation(xSnowman, ySnowman + 400);
+        drawColorCircle(120, 100, blackColor);
+
+        zofka.setLocation(xSnowman + 100, ySnowman + 90);
+        drawColorCircle(20, 70, blackColor);
+        zofka.setLocation(xSnowman - 105, ySnowman + 90);
+        drawColorCircle(20, 70, blackColor);
+
     }
 
     public void drawsColorTriangle(double sideLength, Color penColor) {
