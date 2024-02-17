@@ -12,88 +12,76 @@ public class HlavniProgram {
     }
 
     public void start() {
-        Color[] colors = new Color[]{
-            new Color(255, 0, 0), // red
-            new Color(0, 127, 255), // blue
-            new Color(0, 0, 0), // black
-            new Color(0, 255, 0) // green
-        };
+
         int xIcecream = 200;
         int yIcecream = 300;
-        icecream(xIcecream, yIcecream, colors);
-        snowman(xIcecream + 300, yIcecream - 106, colors);
-        train(xIcecream + 300 + 250, yIcecream + 6, colors);
+
+        drawsColorIcecream(xIcecream, yIcecream);
+        drawsColorSnowman(xIcecream + 300, yIcecream - 106);
+        drawsColorTrain(xIcecream + 300 + 250, yIcecream + 6);
     }
 
-    public void icecream(int x, int y, Color[] colors) {
+    public void drawsColorIcecream(int x, int y) {
         zofka.setLocation(x, y);
         zofka.turnLeft(90);
 
-        drawColorCircle(90, 60, colors[3]);
+        drawsColorCircle(90, 60, Color.green);
         zofka.setLocation(x + 85, y - 70);
-        drawsColorTriangle(180, 300, colors[0]);
+        drawsColorTriangle(180, 300, Color.red);
     }
 
-    public void snowman(int x, int y, Color[] colors) {
+    public void drawsColorSnowman(int x, int y) {
         zofka.setLocation(x, y);
-        drawColorCircle(60, 60, colors[2]);
+        drawsColorCircle(60, 60, Color.black);
         zofka.setLocation(x, y + 160);
-        drawColorCircle(80, 80, colors[2]);
+        drawsColorCircle(80, 80, Color.black);
         zofka.setLocation(x, y + 400);
-        drawColorCircle(120, 100, colors[2]);
+        drawsColorCircle(120, 100, Color.black);
 
-        //ručičky
         zofka.setLocation(x + 100, y + 90);
-        drawColorCircle(20, 70, colors[2]);
+        drawsColorCircle(20, 70, Color.black);
         zofka.setLocation(x - 105, y + 90);
-        drawColorCircle(20, 70, colors[2]);
+        drawsColorCircle(20, 70, Color.black);
 
         zofka.turnRight(90);
     }
 
-    public void train(int x, int y, Color[] colors) {
-        // bojler
-        zofka.setLocation(x+325,y+100);
-        drawsColorRectangle(125,250, colors[2]);
-        // kabina
-        zofka.setLocation(x+325+175,y+100);
-        drawsColorRectangle(250,175,colors[1]);
-        // zadní kolo
-        zofka.setLocation(x+325,y+100);
-        drawColorCircle(88,60,colors[0]);
-        // kolečka
-        zofka.setLocation(x+95,y+146);
-        drawColorCircle(40,60,colors[0]);
-        zofka.setLocation(x+210,y+146);
-        drawColorCircle(40,60,colors[0]);
-        // radlice
-        zofka.setLocation(x+75,y+20);
+    public void drawsColorTrain(int x, int y) {
+
+        zofka.setLocation(x + 325, y + 100);
+        drawsColorRectangle(125, 250, Color.black);
+
+        zofka.setLocation(x + 325 + 175, y + 100);
+        drawsColorRectangle(250, 175, Color.blue);
+
+        zofka.setLocation(x + 325, y + 100);
+        drawsColorCircle(88, 60, Color.red);
+
+        zofka.setLocation(x + 95, y + 146);
+        drawsColorCircle(40, 60, Color.red);
+        zofka.setLocation(x + 210, y + 146);
+        drawsColorCircle(40, 60, Color.red);
+
+        zofka.setLocation(x + 75, y + 20);
         zofka.turnLeft(135);
-        drawsColorTriangle(125 * Math.sqrt(2), 125,colors[1]);
-
-
-
-    }
-
-    public void drawsColorTriangle(double sideLength, Color penColor) {
-        drawsColorTriangle(sideLength, sideLength, penColor);
+        drawsColorTriangle(125 * Math.sqrt(2), 125, Color.blue);
     }
 
     public void drawsColorTriangle(double baseLength, double sideLength, Color penColor) {
-        double uhelA = 180 - (Math.toDegrees(Math.acos((baseLength / 2) / sideLength)));
-        double uhelB = 360 - (2 * uhelA);
+        double ungleA = 180 - (Math.toDegrees(Math.acos((baseLength / 2) / sideLength)));
+        double ungleB = 360 - (2 * ungleA);
 
         zofka.penDown();
         zofka.setPenColor(penColor);
 
         zofka.move(baseLength);
-        zofka.turnLeft(uhelA);
+        zofka.turnLeft(ungleA);
 
         zofka.move(sideLength);
-        zofka.turnLeft(uhelB);
+        zofka.turnLeft(ungleB);
 
         zofka.move(sideLength);
-        zofka.turnLeft(uhelA);
+        zofka.turnLeft(ungleA);
 
         zofka.penUp();
     }
@@ -111,17 +99,13 @@ public class HlavniProgram {
         zofka.penUp();
     }
 
-    public void drawColorSquare(double sideLength, Color penColor) {
-        drawsColorRectangle(sideLength,sideLength, penColor);
-    }
-
-    public void drawColorCircle(double radius, int segments, Color penColor) {
+    public void drawsColorCircle(double radius, int segments, Color penColor) {
         zofka.penDown();
         zofka.setPenColor(penColor);
 
         for (int i = 0; i < segments; i++) {
-            zofka.move(2 * Math.PI * radius / segments); // Dopředný pohyb (vypočtený podle obvodu kruhu a počtu stran)
-            zofka.turnRight(360.0 / segments); // Otočení želvičky o správný úhel
+            zofka.move(2 * Math.PI * radius / segments);
+            zofka.turnRight(360.0 / segments);
         }
         zofka.penUp();
     }
